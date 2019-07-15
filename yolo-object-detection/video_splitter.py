@@ -11,30 +11,35 @@
 import cv2
 import sys, os
 # vidcap = cv2.VideoCapture('videos/airport.mp4')
-def getFrame(sec, video, count):
+def getFrame(sec, video_name, count):
+    video = cv2.VideoCapture(video_name)
     video.set(cv2.CAP_PROP_POS_MSEC,sec*1000)
     hasFrames,image = video.read()
     if hasFrames:
-        cv2.imwrite("split_images/image"+str(count)+".jpg", image)     # save frame as JPG file
+        video_name = video_name[7:]
+        print(video_name)
+        cv2.imwrite("split_images/"+video_name + "_" +str(count)+".jpg", image)     # save frame as JPG file
     return hasFrames
 
-# main can be used to pass parameters to the functions below
+# main is used to pass parameters to the functions below
 # navigate to directory where ths file is located
 # python video_splitter.py <path to video/videoName.mp4>
 # this program will create the directory 'split_images' to store the output of the processed images
 def main():
+
     if not os.path.exists('split_images'):
         os.makedirs('split_images')
-    video = cv2.VideoCapture(sys.argv[1])
+
+    video_name = sys.argv[1]
     sec = 0
     frameRate = 0.25 #//it will capture image in each 0.25 second
     count = 1
-    success = getFrame(sec, video, count)
+    success = getFrame(sec, video_name, count)
     while success:
         count = count + 1
         sec = sec + frameRate
         sec = round(sec, 2)
-        success = getFrame(sec, video, count)
+        success = getFrame(sec, video_name, count)
 
 if __name__ == "__main__":
    main()
