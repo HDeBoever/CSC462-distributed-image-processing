@@ -16,9 +16,9 @@ def getFrame(sec, video_name, count):
     video.set(cv2.CAP_PROP_POS_MSEC,sec*1000)
     hasFrames,image = video.read()
     if hasFrames:
+        # hardcoded file name change relies on folder name length, I know, bad
         video_name = video_name[7:]
-        print(video_name)
-        cv2.imwrite("split_images/"+video_name + "_" +str(count)+".jpg", image)     # save frame as JPG file
+        cv2.imwrite("split_images/" + video_name[:-4] + str(count)+".jpg", image)     # save frame as JPG file
     return hasFrames
 
 # main is used to pass parameters to the functions below
@@ -32,7 +32,7 @@ def main():
 
     video_name = sys.argv[1]
     sec = 0
-    frameRate = 0.25 #//it will capture image in each 0.25 second
+    frameRate = 0.5 # 4 fps
     count = 1
     success = getFrame(sec, video_name, count)
     while success:

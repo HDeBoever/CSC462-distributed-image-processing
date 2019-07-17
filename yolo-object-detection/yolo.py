@@ -11,14 +11,10 @@ import sys
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True,
-	help="path to input image")
-ap.add_argument("-y", "--yolo", required=True,
-	help="base path to YOLO directory")
-ap.add_argument("-c", "--confidence", type=float, default=0.5,
-	help="minimum probability to filter weak detections")
-ap.add_argument("-t", "--threshold", type=float, default=0.3,
-	help="threshold when applyong non-maxima suppression")
+ap.add_argument("-i", "--image", required = True, help = "path to input image")
+ap.add_argument("-y", "--yolo", required = True, help ="base path to YOLO directory")
+ap.add_argument("-c", "--confidence", type = float, default = 0.5, help= " minimum probability to filter weak detections")
+ap.add_argument("-t", "--threshold", type = float, default = 0.3, help = "threshold when applyong non-maxima suppression")
 args = vars(ap.parse_args())
 
 # load the COCO class labels our YOLO model was trained on
@@ -27,8 +23,7 @@ LABELS = open(labelsPath).read().strip().split("\n")
 
 # initialize a list of colors to represent each possible class label
 np.random.seed(42)
-COLORS = np.random.randint(0, 255, size=(len(LABELS), 3),
-	dtype="uint8")
+COLORS = np.random.randint(0, 255, size=(len(LABELS), 3), dtype="uint8")
 
 # derive the paths to the YOLO weights and model configuration
 weightsPath = os.path.sep.join([args["yolo"], "yolov3.weights"])
@@ -49,8 +44,7 @@ ln = [ln[i[0] - 1] for i in net.getUnconnectedOutLayers()]
 # construct a blob from the input image and then perform a forward
 # pass of the YOLO object detector, giving us our bounding boxes and
 # associated probabilities
-blob = cv2.dnn.blobFromImage(image, 1 / 255.0, (416, 416),
-	swapRB=True, crop=False)
+blob = cv2.dnn.blobFromImage(image, 1 / 255.0, (416, 416), swapRB=True, crop=False)
 net.setInput(blob)
 start = time.time()
 layerOutputs = net.forward(ln)
@@ -113,12 +107,11 @@ if len(idxs) > 0:
 		color = [int(c) for c in COLORS[classIDs[i]]]
 		cv2.rectangle(image, (x, y), (x + w, y + h), color, 2)
 		text = "{}: {:.4f}".format(LABELS[classIDs[i]], confidences[i])
-		cv2.putText(image, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX,
-			0.5, color, 2)
+		cv2.putText(image, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
 # show the output image, and press any key to exit the program
 cv2.imshow("Image", image)
 pressed_key = cv2.waitKey(0)
 if pressed_key is not None:
 	cv2.destroyAllWindows()
-	sys.exit(0)
+sys.exit(0)
