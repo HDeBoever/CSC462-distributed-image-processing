@@ -20,8 +20,6 @@ fps = 0.5  # 4 frames per second
 frame_array = []
 files = [f for f in os.listdir(pathIn) if isfile(join(pathIn, f))]
 #for sorting the file names properly
-files.sort(key = lambda x: x[5:-4])
-files.sort()
 frame_array = []
 files = [f for f in os.listdir(pathIn) if isfile(join(pathIn, f))]
 #for sorting the file names properly
