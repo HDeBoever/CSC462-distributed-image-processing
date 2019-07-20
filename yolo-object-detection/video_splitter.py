@@ -18,6 +18,7 @@ def getFrame(sec, video_name, count):
     if hasFrames:
         # hardcoded file name change relies on folder name length, I know, bad
         video_name = video_name[7:]
+        print("split_images/" + video_name[:-4] + str(count)+".jpg")
         cv2.imwrite("split_images/" + video_name[:-4] + str(count)+".jpg", image)     # save frame as JPG file
     return hasFrames
 
@@ -32,7 +33,7 @@ def main():
 
     video_name = sys.argv[1]
     sec = 0
-    frameRate = 0.5 # 4 fps
+    frameRate = 0.03 # 30 fps
     count = 1
     success = getFrame(sec, video_name, count)
     while success:
