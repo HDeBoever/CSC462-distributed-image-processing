@@ -110,8 +110,11 @@ if len(idxs) > 0:
 		cv2.putText(image, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
 # show the output image, and press any key to exit the program
-cv2.imshow("Image", image)
-pressed_key = cv2.waitKey(0)
-if pressed_key is not None:
-	cv2.destroyAllWindows()
+# cv2.imshow("Image", image)
+save_file_name = args["image"][:-4] + 'processed.jpg'
+os.path.normpath(save_file_name)
+cv2.imwrite(save_file_name, image)
+
+# Put the processed image for a given picture into the processed_split_images folder
+os.rename(save_file_name, 'processed_split_images' + save_file_name[12:])
 sys.exit(0)
