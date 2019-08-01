@@ -9,4 +9,4 @@ file_count = len(files)
 print(file_count)
 
 for i in range (0, file_count):
-    os.system('python yolo.py --image split_images/airport' + str(i + 1) +'.jpg --yolo yolo-coco')
+	os.system('python yolo.py --image split_images/paris' + str(i + 1) +'.jpg --yolo yolo-coco')

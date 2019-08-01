@@ -113,8 +113,9 @@ if len(idxs) > 0:
 # cv2.imshow("Image", image)
 save_file_name = args["image"][:-4] + 'processed.jpg'
 os.path.normpath(save_file_name)
+print(save_file_name)
 cv2.imwrite(save_file_name, image)
 
 # Put the processed image for a given picture into the processed_split_images folder
-os.rename(save_file_name, 'processed_split_images' + save_file_name[12:])
+os.rename(save_file_name, '/home/ec2-user/efs-mount-point/processed_split_images' + save_file_name[12:])
 sys.exit(0)

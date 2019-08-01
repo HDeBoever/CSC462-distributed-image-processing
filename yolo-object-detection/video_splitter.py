@@ -12,15 +12,15 @@ import cv2
 import sys, os
 # vidcap = cv2.VideoCapture('videos/airport.mp4')
 def getFrame(sec, video_name, count):
-    video = cv2.VideoCapture(video_name)
-    video.set(cv2.CAP_PROP_POS_MSEC,sec*1000)
-    hasFrames,image = video.read()
-    if hasFrames:
-        # hardcoded file name change relies on folder name length, I know, bad
-        video_name = video_name[7:]
-        print("split_images/" + video_name[:-4] + str(count)+".jpg")
-        cv2.imwrite("split_images/" + video_name[:-4] + str(count)+".jpg", image)     # save frame as JPG file
-    return hasFrames
+	video = cv2.VideoCapture(video_name)
+	video.set(cv2.CAP_PROP_POS_MSEC,sec*1000)
+	hasFrames,image = video.read()
+	if hasFrames:
+		# hardcoded file name change relies on folder name length, I know, bad
+		video_name = video_name[7:]
+		print("split_images/" + video_name[:-4] + str(count)+".jpg")
+		cv2.imwrite("split_images/" + video_name[:-4] + str(count)+".jpg", image)     # save frame as JPG file
+	return hasFrames
 
 # main is used to pass parameters to the functions below
 # navigate to directory where ths file is located
@@ -28,19 +28,22 @@ def getFrame(sec, video_name, count):
 # this program will create the directory 'split_images' to store the output of the processed images
 def main():
 
-    if not os.path.exists('split_images'):
-        os.makedirs('split_images')
+	if not os.path.exists('split_images'):
+		os.makedirs('split_images')
 
-    video_name = sys.argv[1]
-    sec = 0
-    frameRate = 0.03 # 30 fps
-    count = 1
-    success = getFrame(sec, video_name, count)
-    while success:
-        count = count + 1
-        sec = sec + frameRate
-        sec = round(sec, 2)
-        success = getFrame(sec, video_name, count)
+	if not os.path.exists('processed_split_images'):
+		os.makedirs('processed_split_images')
+
+	video_name = sys.argv[1]
+	sec = 0
+	frameRate = 0.03 # 30 fps
+	count = 1
+	success = getFrame(sec, video_name, count)
+	while success:
+		count = count + 1
+		sec = sec + frameRate
+		sec = round(sec, 2)
+		success = getFrame(sec, video_name, count)
 
 if __name__ == "__main__":
    main()
