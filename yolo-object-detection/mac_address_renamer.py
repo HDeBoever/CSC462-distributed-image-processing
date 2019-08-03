@@ -34,6 +34,7 @@ def rename_images(mac1, mac2, mac3, mac4, images_location):
 			print(mac4  + image)
 
 # program has to be passed the 4 mac addresses on runtime
+# Run the program with A_ B_ C_ D_
 def main(argv):
 
 	mac1 = argv[1]
@@ -41,8 +42,6 @@ def main(argv):
 	mac3 = argv[3]
 	mac4 = argv[4]
 
-	# pass in the mac addresses of the 4 nodes in the form "000000000001"
-	# and the name of the directory where the target images are
 	rename_images(mac1, mac2, mac3, mac4, 'split_images')
 
 if __name__ == "__main__":

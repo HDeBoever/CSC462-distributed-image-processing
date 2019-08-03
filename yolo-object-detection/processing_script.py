@@ -4,7 +4,7 @@
 import os, os.path, sys
 
 docker_variable = os.getenv('ID')
-print(docker_variable)
+print("docker var: " + docker_variable)
 
 for filename in os.listdir('split_images'):
 	curr_file_number = 0
