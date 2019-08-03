@@ -10,7 +10,7 @@
 
 import cv2
 import sys, os
-# vidcap = cv2.VideoCapture('videos/airport.mp4')
+
 def getFrame(sec, video_name, count):
 	video = cv2.VideoCapture(video_name)
 	video.set(cv2.CAP_PROP_POS_MSEC,sec*1000)

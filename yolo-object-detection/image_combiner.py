@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------
 # Images (Frames) to Video
 # Using this code we can generate video from Images (Frames). We have to add pathIn (path of the folder
 # which contains all the images). I set framerate with 0.5 so it will take 2 images for 1 second.)

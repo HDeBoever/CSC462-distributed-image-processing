@@ -1,12 +1,15 @@
 # This script will call yolo.py in a loop to process all the images in a given folder
 
 
-import os, os.path
+import os, os.path, sys
 
+docker_variable = sys.argv[1]
+print(docker_variable)
 
-path, dirs, files = next(os.walk("split_images"))
-file_count = len(files)
-print(file_count)
+for filename in os.listdir('split_images'):
+	curr_file_number = 0
 
-for i in range (0, file_count):
-	os.system('python yolo.py --image split_images/paris' + str(i + 1) +'.jpg --yolo yolo-coco')
+	prefix = filename[:2]
+	if docker_variable == filename[0]:
+		os.system('python yolo.py --image split_images/' + prefix + 'airport' + str(curr_file_number + 1) +'.jpg --yolo yolo-coco')
+	curr_file_number += 1
