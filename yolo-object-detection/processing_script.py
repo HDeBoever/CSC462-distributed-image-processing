@@ -1,9 +1,9 @@
-# This script will call yolo.py in a loop to process all the images in a given folder
+# This script will call yolo.py in a loop to process all the images in the split_images folder
 
 
 import os, os.path, sys
 
-docker_variable = sys.argv[1]
+docker_variable = os.getenv('ID')
 print(docker_variable)
 
 for filename in os.listdir('split_images'):
