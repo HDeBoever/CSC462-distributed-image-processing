@@ -20,16 +20,16 @@ def rename_images(mac1, mac2, mac3, mac4, images_location):
 		curr_image_number = (re.findall('\d+', str(image)))
 		number = curr_image_number[0]
 
-		if int(number) <= 500:
+		if int(number) <= 208:
 			os.rename(dir_path + image, dir_path + mac1 + image)
 			print(mac1  + image)
-		elif int(number) <= 1000:
+		elif int(number) <= 416:
 			os.rename(dir_path + image, dir_path + mac2 + image)
 			print(mac2  + image)
-		elif int(number) <= 1500:
+		elif int(number) <= 624:
 			os.rename(dir_path + image, dir_path + mac3 + image)
 			print(mac3  + image)
-		elif int(number) <= 2000:
+		elif int(number) <= 832:
 			os.rename(dir_path + image, dir_path + mac4 + image)
 			print(mac4  + image)
 
@@ -43,7 +43,7 @@ def main(argv):
 
 	# pass in the mac addresses of the 4 nodes in the form "000000000001"
 	# and the name of the directory where the target images are
-	rename_images(mac1, mac2, mac3, mac4, 'processed_split_images')
+	rename_images(mac1, mac2, mac3, mac4, 'split_images')
 
 if __name__ == "__main__":
 	main(sys.argv)
