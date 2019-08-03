@@ -4,11 +4,14 @@
 # which contains all the images). I set framerate with 0.5 so it will take 2 images for 1 second.)
 # It will generate output video in any format. (eg.: .avi, .mp4, etc.)
 # !!! Please take care that all images are in sequence like image1.jpg, image2.jpg and so on.
-
+#
+# to run:
+# python3 image_combiner.py /path_to_processed_images output_video_name
 
 import cv2
 import numpy as np
 import os
+import sys
 
 from os.path import isfile, join
 
@@ -37,8 +40,11 @@ def convert_frames_to_video(pathIn, pathOut, fps):
 	out.release()
 
 def main():
-	pathIn= './processed_split_images_paris/'
-	pathOut = './recombined_videos/paris_procesed.avi'
+	if len(sys.argv) != 3:
+		print('Incorrect number of arguments\n')
+	pathIn= sys.argv[1]
+	filename = sys.argv[2]
+	pathOut = './recombined_videos/' + filename
 	fps = 30.0
 	convert_frames_to_video(pathIn, pathOut, fps)
 
