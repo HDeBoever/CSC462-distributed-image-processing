@@ -8,6 +8,7 @@ import time
 import cv2
 import os
 import sys
+import shutil
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -115,7 +116,11 @@ save_file_name = args["image"][:-4] + 'processed.jpg'
 os.path.normpath(save_file_name)
 print(save_file_name)
 cv2.imwrite(save_file_name, image)
+# 
+# print("save file name " + save_file_name)
+#
+# print("save file name [12:]" + save_file_name[12:])
 
 # Put the processed image for a given picture into the processed_split_images folder
-os.rename(save_file_name, '/home/ec2-user/efs-mount-point/processed_split_images' + save_file_name[12:])
+shutil.move(save_file_name, 'processed_split_images' + save_file_name[12:])
 sys.exit(0)
