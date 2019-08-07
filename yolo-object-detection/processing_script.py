@@ -6,11 +6,8 @@ import os, os.path, sys
 docker_variable = os.getenv('ID')
 print("docker var: " + docker_variable)
 
-images = [f for f in listdir('split_images') if isfile(join('split_images', f))]
-images.sort(key = lambda x: int(''.join(filter(str.isdigit, x))))
-
 curr_file_number = 0
-for filename in images:
+for filename in os.listdir('split_images'):
 
 	prefix = filename[:2]
 	if docker_variable == filename[0]:
