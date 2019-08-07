@@ -40,10 +40,10 @@ def ssh_connect(ip_address, username, password, command):
 def main(argv):
 
 	# Call the ssh_connect 4 times sequntially to connect to the 4 worker nodes.
-	ssh_connect()
-	ssh_connect()
-	ssh_connect()
-	ssh_connect()
+	ssh_connect("18.236.88.192", "ec2-user", "", "ssh -i testing2.pem")
+	ssh_connect("34.212.13.86", "ec2-user", "", "ssh -i testing2.pem")
+	ssh_connect("52.13.28.68", "ec2-user", "", "ssh -i testing2.pem")
+	ssh_connect("34.220.148.16", "ec2-user", "", "ssh -i testing2.pem")
 
 
 
