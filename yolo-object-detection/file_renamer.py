@@ -1,4 +1,4 @@
-# This script looks into the processed_split_images folder, and associates a MAC address to each file name based on the number in the file name
+# This script looks into the processed_split_images folder, and associates a prefix address to each file name based on the number in the file name
 
 
 import sys, os, os.path, re
@@ -6,7 +6,7 @@ from os import listdir
 from os.path import isfile, join
 
 
-def rename_images(mac1, mac2, mac3, mac4, images_location):
+def rename_images(prefix1, prefix2, prefix3, prefix4, images_location):
 
 	images_to_be_renamed = [f for f in listdir(images_location) if isfile(join(images_location, f))]
 	images_to_be_renamed.sort(key = lambda x: int(''.join(filter(str.isdigit, x))))
@@ -21,28 +21,28 @@ def rename_images(mac1, mac2, mac3, mac4, images_location):
 		number = curr_image_number[0]
 
 		if int(number) <= 208:
-			os.rename(dir_path + image, dir_path + mac1 + image)
-			print(mac1  + image)
+			os.rename(dir_path + image, dir_path + prefix1 + image)
+			print(prefix1  + image)
 		elif int(number) <= 416:
-			os.rename(dir_path + image, dir_path + mac2 + image)
-			print(mac2  + image)
+			os.rename(dir_path + image, dir_path + prefix2 + image)
+			print(prefix2  + image)
 		elif int(number) <= 624:
-			os.rename(dir_path + image, dir_path + mac3 + image)
-			print(mac3  + image)
+			os.rename(dir_path + image, dir_path + prefix3 + image)
+			print(prefix3  + image)
 		elif int(number) <= 832:
-			os.rename(dir_path + image, dir_path + mac4 + image)
-			print(mac4  + image)
+			os.rename(dir_path + image, dir_path + prefix4 + image)
+			print(prefix4  + image)
 
-# program has to be passed the 4 mac addresses on runtime
+# program has to be passed the 4 prefix addresses on runtime
 # Run the program with A_ B_ C_ D_
 def main(argv):
 
-	mac1 = argv[1]
-	mac2 = argv[2]
-	mac3 = argv[3]
-	mac4 = argv[4]
+	prefix1 = argv[1]
+	prefix2 = argv[2]
+	prefix3 = argv[3]
+	prefix4 = argv[4]
 
-	rename_images(mac1, mac2, mac3, mac4, 'split_images')
+	rename_images(prefix1, prefix2, prefix3, prefix4, 'split_images')
 
 if __name__ == "__main__":
 	main(sys.argv)
